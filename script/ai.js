@@ -1,34 +1,39 @@
-const { get } = require('axios');
+const axios = require('axios');
 
 module.exports.config = {
-    name: "ai",
-    version: "1.0.0",
-    role: 0,
-    hasPrefix: false,
-    credits: "Deku",
-    description: "Talk to AI with continuous conversation.",
-    aliases:  [],
-    usages: "[prompt]",
-    cooldown: 0,
+  name: 'ai',
+  version: '1.0.0',
+  role: 0,
+  hasPrefix: false,
+  aliases: ['gpt', 'openai'],
+  description: "An AI command powered by GPT-4",
+  usage: "ai [prompt]",
+  credits: 'Developer: https://www.facebook.com/Churchill.Dev4100',
+  cooldown: 3,
 };
 
-module.exports.run = async function({ api, event, args }) {
-    function sendMessage(msg) {
-        api.sendMessage(msg, event.threadID, event.messageID);
-    }
+module.exports.run = async function({
+  api,
+  event,
+  args
+}) {
+  const input = args.join(' ');
+  if (!input) {
+    api.sendMessage(`𝑯𝑬𝑳𝑳𝑶 𝑰𝑴 𝑨𝑰 ✨ 
 
-    if (!args[0]) return sendMessage('Please provide a question first.');
+━━━━━━━━━━━━━━━
 
-    const prompt = args.join(" ");
-    const url = `https://deku-rest-api.replit.app/gpt4?prompt=${encodeURIComponent(prompt)}&uid=${event.senderID}`;
-
-    try {
-        const response = await get(url);
-        const data = response.data;
-        const botOwnerProfileLink = "https://web.facebook.com/frenchclarence.mangigo.9"; // Replace this with the bot owner's Facebook profile link
-        const messageWithLink = `${data.gpt4}\n𝐂𝐫𝐞𝐝𝐢𝐭𝐬 𝐭𝐨 𝐭𝐡𝐞 𝐛𝐨𝐭 𝐨𝐰𝐧𝐞𝐫:  ${botOwnerProfileLink}`;
-        return sendMessage(messageWithLink);
-    } catch (error) {
-        return sendMessage(error.message);
-    }
-}
+ 𝑷𝑳𝑬𝑨𝑺𝑬 𝑷𝑹𝑶𝑽𝑰𝑫𝑬 𝑨 𝑸𝑼𝑬𝑺𝑻𝑰𝑶𝑵/𝑸𝑼𝑬𝑹𝒀`, event.threadID, event.messageID);
+    return;
+  }
+  api.sendMessage(`🔍𝙎𝙚𝙖𝙧𝙘𝙝𝙞𝙣𝙜 𝙋𝙡𝙚𝙖𝙨𝙚 𝙒𝙖𝙞𝙩....
+━━━━━━━━━━━━━━━━━━\n\n "${input}"`, event.threadID, event.messageID);
+  try {
+    const { data } = await axios.get(`https://openaikey-x20f.onrender.com/api?prompt=${encodeURIComponent(input)}`);
+    const response = data.response;
+    const credits = '\n𝐜𝐫𝐞𝐝𝐢𝐭𝐬: https://www.facebook.com/Churchill.Dev4100';
+    api.sendMessage(response + credits, event.threadID, event.messageID);
+  } catch (error) {
+    api.sendMessage('An error occurred while processing your request.', event.threadID, event.messageID);
+  }
+};
