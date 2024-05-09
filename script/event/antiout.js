@@ -16,7 +16,7 @@ module.exports.handleEvent = async ({
       if (error) {
         api.sendMessage(`sige leave ka di na kita e add ${name} `, event.threadID);
       } else {
-        api.sendMessage(`Ayan left kapanh hayop ka, Wala Kang takas sakin, ${name} has been re-added to the group successfully!`, event.threadID);
+        api.sendMessage(`Ayan left kapang hayop ka, Wala Kang takas sakin, wait add kita ulit ${name} has been re-added to the group successfully!`, event.threadID);
       }
     });
   }
