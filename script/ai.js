@@ -16,7 +16,7 @@ module.exports.run = async function({ api, event, args }) {
   const input = args.join(' ');
   
   if (!input) {
-    api.sendMessage(`𝑯𝑬𝑳𝑳𝑶! 𝑰'𝑴 𝑨 𝑺𝑵𝑶𝑾𝑭𝑳𝑨𝑲𝑬𝑺 𝑨𝑰 𝑩𝑶𝑻 ✨ 
+    api.sendMessage(`𝑯𝑬𝑳𝑳𝑶, 𝑰'𝑴 𝒀𝑶𝑼𝑹 𝑨𝑰 𝑨𝑺𝑺𝑰𝑺𝑻𝑨𝑵𝑻 ✨ 
 
 ━━━━━━━━━━━━━━━
 
