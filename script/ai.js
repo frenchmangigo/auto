@@ -24,7 +24,7 @@ module.exports.run = async function({ api, event, args }) {
     return;
   }
   
-  api.sendMessage(`🔍Searching for Snowflakes AI response....`, event.threadID, event.messageID);
+  api.sendMessage(`🔍Searching please wait....`, event.threadID, event.messageID);
   
   try {
     const { data } = await axios.get(`https://hashier-api-snowflake.vercel.app/api/snowflake?ask=${encodeURIComponent(input)}`);
