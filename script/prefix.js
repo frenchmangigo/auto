@@ -16,7 +16,7 @@ module.exports.run = function ({ api, event, prefix, admin }) {
 
     if (!prefix) {
         api.sendMessage(
-            "I don't have a prefix set.",
+            "wala akong prefix pre, dumiretso kana!",
             threadID,
             messageID
         );
