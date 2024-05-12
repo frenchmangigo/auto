@@ -1,6 +1,6 @@
 const fs = require("fs");
 
-module.🫨exports🫨.config = {
+module.exports.config = {
 		name: "prefix",
 		version: "1.0.1",
 		role: 0,
@@ -12,7 +12,7 @@ module.🫨exports🫨.config = {
 		aliases: ["prefix", "Prefix", "PREFIX", "prefi"],
 };
 
-module🫨.exports.🫨run = function ({ api, event, prefix, admin }) {
+module.exports.run = function ({ api, event, prefix, admin }) {
 		const { threadID, messageID } = event;
 
 		if (event.body.toLowerCase() === `${prefix}prefix`) {
