@@ -16,7 +16,7 @@ module.exports.run = function ({ api, event, prefix, admin }) {
 
     if (!prefix) {
         api.sendMessage(
-            "wala akong prefix tanga.",
+            "Wala akong prefix.",
             threadID,
             messageID
         );
@@ -26,7 +26,7 @@ module.exports.run = function ({ api, event, prefix, admin }) {
     // Check if the command is invoked manually with the prefix
     if (body.toLowerCase() === `${prefix}prefix`) {
         api.sendMessage(
-            `Oy pre ang ito prefix ko: [ 𓆩 ${prefix} 𓆪 ].`,
+            `Ito prefix ko [ 𓆩 ${prefix} 𓆪 ].`,
             threadID,
             messageID
         );
