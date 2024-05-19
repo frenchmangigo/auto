@@ -16,7 +16,7 @@ module.exports.run = function ({ api, event, prefix, admin }) {
 
     if (!prefix) {
         api.sendMessage(
-            "Wag kanang mag prefix tanga!",
+            "Wala koy prefix bai! Bombai!",
             threadID,
             messageID
         );
