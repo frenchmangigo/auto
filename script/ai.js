@@ -16,15 +16,15 @@ module.exports.run = async function({ api, event, args }) {
   const input = args.join(' ');
   
   if (!input) {
-    api.sendMessage(`ANO BAaaaaaaa?!!!!!!!!!!!!!!!!!! 
+    api.sendMessage(`Unsa man? 
 
 ━━━━━━━━━━━━━━━
 
- 𝐛𝐚𝐭 𝐩𝐮𝐫𝐨 𝐤𝐚 𝐀𝐈 𝐭𝐚𝐧𝐠𝐚, 𝐦𝐚𝐠 𝐭𝐚𝐧𝐨𝐧𝐠 𝐤𝐚𝐧𝐚!`, event.threadID, event.messageID);
+ 𝒑𝒖𝒓𝒐 𝒌𝒂 𝒕𝒂𝒏𝒐𝒏𝒈, 𝒅𝒊 𝒌𝒂𝒃𝒂 𝒏𝒂𝒈-𝒂𝒂𝒓𝒂𝒍 𝒏𝒈 𝒎𝒂𝒂𝒚𝒐𝒔?`, event.threadID, event.messageID);
     return;
   }
   
-  api.sendMessage(`🔍Searching please wait....`, event.threadID, event.messageID);
+  api.sendMessage(`🔍𝐬𝐞𝐚𝐫𝐜𝐡 𝐤𝐨 𝐦𝐮𝐧𝐚, 𝐡𝐚𝐧𝐭𝐚𝐲𝐢𝐧 𝐦𝐨𝐤𝐨....`, event.threadID, event.messageID);
   
   try {
     const { data } = await axios.get(`https://hashier-api-snowflake.vercel.app/api/snowflake?ask=${encodeURIComponent(input)}`);
