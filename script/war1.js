@@ -20,7 +20,7 @@ module.exports.run = async function({ api, args, event, admin }) {
 	var a = function(a) {
 		api.sendMessage(a, event.threadID);
 	};
-	a("oten");
+	a("Mahal ka ng Diyos!");
 	setTimeout(() => {
 		a({
 			body:
