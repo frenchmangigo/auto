@@ -16,11 +16,11 @@ module.exports.run = async function({ api, event, args }) {
   const input = args.join(' ');
   
   if (!input) {
-    api.sendMessage(`Unsa man? 
+    api.sendMessage(` 
 
 ━━━━━━━━━━━━━━━
 
- 𝒑𝒖𝒓𝒐 𝒌𝒂 𝒕𝒂𝒏𝒐𝒏𝒈, 𝒅𝒊 𝒌𝒂𝒃𝒂 𝒏𝒂𝒈-𝒂𝒂𝒓𝒂𝒍 𝒏𝒈 𝒎𝒂𝒂𝒚𝒐𝒔?`, event.threadID, event.messageID);
+ 𝒑𝒖𝒓𝒐 𝒌𝒂 🅰🅸, 𝒅𝒊 𝒌𝒂𝒃𝒂 𝒏𝒂𝒈-𝒂𝒂𝒓𝒂𝒍 𝒏𝒈 𝒎𝒂𝒂𝒚𝒐𝒔?`, event.threadID, event.messageID);
     return;
   }
   
