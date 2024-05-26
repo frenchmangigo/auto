@@ -19,7 +19,7 @@ const name = info[event.senderID].name
     const axios = require('axios');
     const fs = require("fs")
     if(msgData[event.messageID].attachments.length === 0) {
-        api.sendMessage(`${name} unsent kapang hayop ka! Ito inunsent nya oh: ${msgData[event.messageID].body}`, event.threadID)  
+        api.sendMessage(`Ikaw ${name} unsent kapa! Ito inunsent nya oh: ${msgData[event.messageID].body}`, event.threadID)  
     } else if(msgData[event.messageID].attachments[0].type == 'photo')  {   
       var photo = []
       var del = []
