@@ -39,6 +39,7 @@ const randomQuotes = [
 		"There's a place in France where you can witness an optical illusion that makes you appear to grow and shrink as you walk down a hill.",
 		"The world's largest desert is Antarctica, not the Sahara.",
 		"A blue whale's heart is so big that a human could swim through its arteries.",
+	        "Kung ang English Ng Goat ay Kambing, Pwede ba kitang kalambing?",
 		"The longest word in the English language without a vowel is 'rhythms'.",
 		"Polar bears' fur is not white; it's actually transparent.",
 		"The electric chair was invented by a dentist.",
