@@ -1,39 +1,42 @@
-const { Hercai } = require('hercai');
-const herc = new Hercai();
+const axios = require('axios');
 
 module.exports.config = {
-  name: 'ai',
-  version: '1.1.0',
-  hasPermssion: 0,
-  credits: 'Yan Maglinte | Liane Cagara',
-  description: 'An AI command using Hercai API!',
-  usePrefix: false,
-  allowPrefix: true,
-  commandCategory: 'chatbots',
-  usages: 'Ai [prompt]',
-  cooldowns: 5,
+ name: "ai",
+ credits: "cliff",
+ version: "1.0.0",
+ role: 0,
+ aliase: ["ai"],
+ cooldown: 0,
+ hasPrefix: false,
 };
 
-module.exports.run = async function ({ api, event, args, box }) {
-  const prompt = args.join(' ');
-  if (!box) {
-    return api.sendMessage(`Unsupported.`, event.threadID);
+module.exports.run = async function ({ api, event, args }) {
+ try {
+  const { messageID, messageReply } = event;
+  let prompt = args.join(' ');
+
+  if (messageReply) {
+   const repliedMessage = messageReply.body;
+   prompt = `${repliedMessage} ${prompt}`;
   }
 
-  try {
-    // Available Models: "v3", "v3-32k", "turbo", "turbo-16k", "gemini"
-    if (!prompt) {
-      box.reply('Please specify a message!');
-      box.react('❓');
-    } else {
-      const info = await box.reply(`Fetching answer...`);
-      box.react('⏱️');
-      const response = await herc.question({ model: 'v3', content: prompt });
-      await box.edit(response.reply, info.messageID);
-      box.react('');
-    }
-  } catch (error) {
-    box.reply('⚠️ Something went wrong: ' + error);
-    box.react('⚠️');
+  if (!prompt) {
+   return api.sendMessage('Hey there! Please provide a prompt to generate a text response.\nExample: Ai What is the meaning of life?', event.threadID, messageID);
   }
+
+  const gpt4_api = `https://ai-chat-gpt-4-lite.onrender.com/api/hercai?question=${encodeURIComponent(prompt)}`;
+
+  const response = await axios.get(gpt4_api);
+
+  if (response.data && response.data.reply) {
+   const generatedText = response.data.reply;
+   api.sendMessage({ body: generatedText, attachment: null }, event.threadID, messageID);
+  } else {
+   console.error('API response did not contain expected data:', response.data);
+   api.sendMessage(`❌ An error occurred while generating the text response. Please try again later. Response data: ${JSON.stringify(response.data)}`, event.threadID, messageID);
+  }
+ } catch (error) {
+  console.error('Error:', error);
+  api.sendMessage(`❌ An error occurred while generating the text response. Please try again later. Error details: ${error.message}`, event.threadID, event.messageID);
+ }
 };
