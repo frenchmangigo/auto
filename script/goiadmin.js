@@ -25,7 +25,7 @@ module.exports.handleEvent = function({ api, event, admin }) {
 					"Do you like my creator thats why your tagging him? Why dont you add him https://web.facebook.com/frenchclarence.mangigo.9",
 					" Another tag in my Creator, i will kick your fucking ass"
 				];
-				api.setMessageReaction("😍", event.messageID, (err) => {}, true);
+				api.setMessageReaction("🖕", event.messageID, (err) => {}, true);
 				return api.sendMessage({body: msg[Math.floor(Math.random()*msg.length)]}, event.threadID, event.messageID);
 			}
 		}
