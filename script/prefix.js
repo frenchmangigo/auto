@@ -16,7 +16,7 @@ module.exports.run = function ({ api, event, prefix, admin }) {
 
     if (!prefix) {
         api.sendMessage(
-            "プレフィックスがありません",
+            "𝐈 𝐡𝐚𝐯𝐞 𝐧𝐨 𝐩𝐫𝐞𝐟𝐢𝐱",
             threadID,
             messageID
         );
