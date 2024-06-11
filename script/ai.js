@@ -1,39 +1,39 @@
-const axios = require('axios');
+const { Hercai } = require('hercai');
+const herc = new Hercai();
 
 module.exports.config = {
   name: 'ai',
-  version: '1.0.0',
-  role: 0,
-  hasPrefix: false,
-  aliases: ['snow', 'ai'],
-  description: "An AI command powered by Snowflakes AI",
-  usage: "snowflakes [prompt]",
-  credits: 'churchill',
-  cooldown: 3,
+  version: '1.1.0',
+  hasPermssion: 0,
+  credits: 'Yan Maglinte | Liane Cagara',
+  description: 'An AI command using Hercai API!',
+  usePrefix: false,
+  allowPrefix: true,
+  commandCategory: 'chatbots',
+  usages: 'Ai [prompt]',
+  cooldowns: 5,
 };
 
-module.exports.run = async function({ api, event, args }) {
-  const input = args.join(' ');
-  
-  if (!input) {
-    api.sendMessage(` 
-
-━━━━━━━━━━━━━━━
-
- 𝒑𝒖𝒓𝒐 𝒌𝒂 Ai, 𝒅𝒊 𝒌𝒂𝒃𝒂 𝒏𝒂𝒈-𝒂𝒂𝒓𝒂𝒍 𝒏𝒈 𝒎𝒂𝒂𝒚𝒐𝒔?`, event.threadID, event.messageID);
-    return;
+module.exports.run = async function ({ api, event, args, box }) {
+  const prompt = args.join(' ');
+  if (!box) {
+    return api.sendMessage(`Unsupported.`, event.threadID);
   }
-  
-  api.sendMessage(`🔍𝐬𝐞𝐚𝐫𝐜𝐡 𝐤𝐨 𝐦𝐮𝐧𝐚, 𝐡𝐚𝐧𝐭𝐚𝐲𝐢𝐧 𝐦𝐨𝐤𝐨....`, event.threadID, event.messageID);
-  
+
   try {
-    const { data } = await axios.get(`https://hashier-api-snowflake.vercel.app/api/snowflake?ask=${encodeURIComponent(input)}`);
-    if (data.response) {
-      api.sendMessage(data.response + "\n\nhttps://web.facebook.com/frenchclarence.mangigo.9", event.threadID, event.messageID);
+    // Available Models: "v3", "v3-32k", "turbo", "turbo-16k", "gemini"
+    if (!prompt) {
+      box.reply('Please specify a message!');
+      box.react('❓');
     } else {
-      api.sendMessage('No response found.', event.threadID, event.messageID);
+      const info = await box.reply(`Fetching answer...`);
+      box.react('⏱️');
+      const response = await herc.question({ model: 'v3', content: prompt });
+      await box.edit(response.reply, info.messageID);
+      box.react('');
     }
   } catch (error) {
-    api.sendMessage('An error occurred while processing your request.', event.threadID, event.messageID);
+    box.reply('⚠️ Something went wrong: ' + error);
+    box.react('⚠️');
   }
 };
