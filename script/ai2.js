@@ -16,7 +16,7 @@ module.exports.config = {
     credits: "Jonell Magallanes",
     description: "EDUCATIONAL",
     hasPrefix: false,
-    aliases: ["gpt", "ai"],
+    aliases: ["Clarence"],
     usages: "[question]",
     cooldowns: 5,
     hasPermission: 0,
