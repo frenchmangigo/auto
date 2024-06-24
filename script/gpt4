@@ -1,29 +1,51 @@
-const { RsnChat } = require("rsnchat");
 
-const rsnchat = new RsnChat("rsnai_q6XwhE3xUtjjW3SwxiO5xq9o");
+const axios = require('axios');
 
 module.exports.config = {
-		name: "gpt4",
-		version: "1.0.0",
-		role: 0,
-	  aliases: ["Gpt4"],
-		credits: "cliff",
-		hasPrefix: false,
-		description: "Ask GPT-4 a question.",
-		usage: "<question>",
-		cooldowns: 5
+    name: 'gpt4',
+    version: '1.0.0',
+    role: 0,
+    hasPrefix: false,
+    aliases: ['nigga', 'clarence', 'bot'],
+    description: 'AI Command',
+    usage: 'ai [query]',
+    credits: 'churchill',
+    cooldown: 3,
 };
 
-module.exports.run = async function ({ api, event, args }) {
-		const question = args.join(" ");
-		if (!question) return api.sendMessage("🤖 𝗣𝗵𝗼𝗻𝗸𝗚𝗽𝘁4\n\n𝙿𝚕𝚎𝚊𝚜𝚎 𝚙𝚛𝚘𝚟𝚒𝚍𝚎 𝚊 𝚚𝚞𝚎𝚜𝚝𝚒𝚘𝚗 𝚘𝚛 𝚜𝚝𝚊𝚝𝚎𝚖𝚎𝚗𝚝!.", event.threadID);
-      api.setMessageReaction("⏳", event.messageID, (err) => {}, true);
-		rsnchat.gpt(question).then((response) => {
-				api.sendMessage('🤖 𝗣𝗵𝗼𝗻𝗸𝗚𝗽𝘁4\n\n' + response.message, event.threadID);
-      api.setMessageReaction("✅", event.messageID, (err) => {}, true);
-		}).catch((error) => {
-				api.sendMessage("An error occurred while processing your request.", event.threadID);
-				console.error(error);
-      api.setMessageReaction("❎", event.messageID, (err) => {}, true);
-		});
+module.exports.run = async function({ api, event, args }) {
+    const query = args.join(' ');
+
+    if (!query) {
+        api.sendMessage('Please provide a question ex: gpt4 what is nigga?', event.threadID, event.messageID);
+        return;
+    }
+
+    api.sendMessage('🔍𝙎𝙚𝙖𝙧𝙘𝙝𝙞𝙣𝙜 𝙥𝙡𝙚𝙖𝙨𝙚 𝙬𝙖𝙞𝙩...', event.threadID, event.messageID);
+
+    try {
+
+        const aiResponse = await axios.get('https://markdevs-api.onrender.com/gpt4', {
+            params: { prompt: query, uid: event.senderID }
+        });
+        const aiData = aiResponse.data.gpt4;
+
+
+        api.getUserInfo(event.senderID, (err, result) => {
+            if (err) {
+                console.error('Error fetching user info:', err);
+                api.sendMessage('An error occurred while fetching the user info.', event.threadID, event.messageID);
+                return;
+            }
+
+            const userName = result[event.senderID].name;
+
+            // Send the combined response
+            const finalResponse = `${aiData}\n\nQuestion asked by: ${userName}`;
+            api.sendMessage(finalResponse, event.threadID, event.messageID);
+        });
+    } catch (error) {
+        console.error('Error:', error);
+        api.sendMessage('An error occurred while fetching the response.', event.threadID, event.messageID);
+    }
 };
