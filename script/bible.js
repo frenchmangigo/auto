@@ -1,13 +1,13 @@
 const axios = require('axios');
 
 module.exports.config = {
-    name: 'bibble',
+    name: 'bible',
     version: '1.0.0',
     role: 0,
-    credits: 'churchill',
+    credits: 'Clarence',
     description: 'Get a random Bible verse.',
     hasPrefix: false,
-    aliases: ['bibleverse', 'bibble'],
+    aliases: ['bibleverse', 'verse'],
     usage: '',
     cooldown: 5,
 };
