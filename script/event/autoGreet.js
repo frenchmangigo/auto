@@ -6,23 +6,24 @@ module.exports.config = {
 
 module.exports.handleEvent = async function({ api, event }) {
   if (event.logMessageType === 'log:subscribe') {
-    const addedUserID = event.logMessageData.addedParticipants.map(participant => participant.userFbId);
-    const userInfo = await api.getUserInfo(addedUserID);
+    const addedParticipants = event.logMessageData.addedParticipants;
     const threadInfo = await api.getThreadInfo(event.threadID);
 
-    // Calculate the current member count including the new member
-    const currentMemberCount = threadInfo.participantIDs.length + addedUserID.length;
+    // Calculate the current member count including the new members
+    const currentMemberCount = threadInfo.participantIDs.length + addedParticipants.length;
 
-    addedUserID.forEach((id, index) => {
-      const name = userInfo[id].name;
+    for (let i = 0; i < addedParticipants.length; i++) {
+      const participant = addedParticipants[i];
+      const userInfo = await api.getUserInfo(participant.userFbId);
+      const name = userInfo[participant.userFbId].name;
       const groupName = threadInfo.threadName;
-      const position = currentMemberCount - addedUserID.length + index + 1; // Calculate the position
-      const ordinalSuffix = getOrdinalSuffix(position); // Function to get ordinal suffix (e.g., 1st, 2nd, 3rd)
+      const position = currentMemberCount - addedParticipants.length + i + 1;
+      const ordinalSuffix = getOrdinalSuffix(position);
 
       const greetingMessage = `Hello ${name}! Welcome to ${groupName} 🎉 You are the ${position}${ordinalSuffix} member in this group!`;
 
       api.sendMessage(greetingMessage, event.threadID);
-    });
+    }
   }
 };
 
