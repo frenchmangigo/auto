@@ -1,7 +1,7 @@
 module.exports.config = {
   name: "autoGreet",
   version: "1.0.0",
-  credits: "YourName"
+  credits: "Clarence Mangigo"
 };
 
 module.exports.handleEvent = async function({ api, event }) {
@@ -14,7 +14,7 @@ module.exports.handleEvent = async function({ api, event }) {
       const userInfo = await api.getUserInfo(participant.userFbId);
       const name = userInfo[participant.userFbId].name;
       const groupName = threadInfo.threadName;
-      const greetingMessage = `Hello @${name}! Welcome to ${groupName} 🎉`; // Mentioning the user
+      const greetingMessage = `Hello ${name}! Welcome to ${groupName} 🎉`; // Mentioning the user
 
       api.sendMessage(greetingMessage, event.threadID);
     }
