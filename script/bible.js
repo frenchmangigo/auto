@@ -6,7 +6,7 @@ module.exports.config = {
     role: 0,
     credits: 'Clarence',
     description: 'Get a random Bible verse.',
-    hasPrefix: false,
+    hasPrefix: true,
     aliases: ['bibleverse', 'verse'],
     usage: '',
     cooldown: 5,
