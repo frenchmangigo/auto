@@ -7,7 +7,7 @@ module.exports.config = {
 	role: 2,
 	credits: "cliff",
 	description: "War nát cái boxchat",
-	hasPrefix: false,
+	hasPrefix: true,
 	usages: "war đấm chất",
 	cooldown: 10,
 };
