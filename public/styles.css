@@ -1,129 +1,103 @@
 body {
     padding: 20px;
-    background-color: #000000; /* Set background color to pure black */
-    height: 100%; /* You must set a specified height */
-    background-position: center; /* Center the image */
-    background-repeat: no-repeat; /* Do not repeat the image */
-    background-size: cover; /* Resize the background image to cover the entire container */
+    background-color: #121212;
     font-family: 'Poppins', sans-serif;
+    color: #ffffff;
+}
+
+.navbar {
+    background-color: #1f1f1f;
+}
+
+.navbar-brand, .nav-link {
+    color: #00ff62 !important;
 }
 
 .container {
-    background-color: rgba(0, 0, 0, 0.836);
-    border-radius: 3px;
-    box-shadow: 0 0 10px #00ff62e8;
+    background-color: #1f1f1f;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 255, 98, 0.5);
     padding: 20px;
     margin-top: 20px;
-    margin-bottom: 20px;
 }
-h1 {
-    color: #ffffff;
-}
-label {
-    color: #495057;
-}
+
 .centered-textarea {
     display: block;
     margin: 0 auto;
     width: 100%;
-    min-height: 500px;
+    min-height: 200px;
     padding: 10px;
     background: url("https://i.imgur.com/0VZZpDl.jpeg");
     background-size: cover;
     background-position: center;
     box-sizing: border-box;
-    border: 1px solid #00ff62e8;
+    border: 1px solid rgba(0, 255, 98, 0.8);
     border-radius: 10px;
     resize: none;
-}
-.btn-primary {
-    background-color: #661c97;
-    border: 1px solid #661c97;
-}
-.btn-primary:hover {
-    background-color: #661c97;
-    border: 1px solid #661c97;
-}
-.success-message {
-    color: green;
-    margin-top: 10px;
-}
-.footer {
-    background-color: 661c97;
-    padding: 10px;
-    text-align: center;
-    font-size: 14px;
     color: #ffffff;
-    margin-top: 35px;
-    border-top: 1px solid #00ff62e8;
-    position: fixed;
-    bottom: 0;
-    left: 0;
+}
+
+.btn-primary {
+    background-color: #00ff62;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 30px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: #00e058;
+}
+
+.btn-success {
+    background-color: #661c97;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 30px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-success:hover {
+    background-color: #581785;
+}
+
+.btn-block {
+    display: block;
     width: 100%;
 }
-.footer p {
-    margin: 0;
-    display: inline-block;
-    margin-right: 30px;
+
+.form-check-label {
+    font-size: 14px;
+    display: flex;
+    align-items: center;
 }
-.container-buttons {
-    margin-top: 20px;
-    text-align: center;
-}
-.container-buttons .btn {
-    margin: 5px;
+
+.form-check-input {
+    margin-right: 10px;
 }
 
 #result {
     padding: 10px;
     margin-top: 20px;
     border-radius: 5px;
+    background-color: #1f1f1f;
+    box-shadow: 0 0 10px rgba(0, 255, 98, 0.5);
 }
-.center-placeholder::placeholder {
+
+.footer {
+    background-color: #1f1f1f;
+    padding: 10px;
     text-align: center;
+    font-size: 14px;
+    color: #ffffff;
+    margin-top: 35px;
+    border-top: 1px solid rgba(0, 255, 98, 0.5);
 }
 
-.form-check {
- display: flex;
- margin-top: 10px;
- padding: 14px;
- align-items: center;
- border: 1px solid #ccc;
- border-radius: 8px;
- cursor: pointer;
- transition: background-color 0.3s ease, border-color 0.3s ease; 
- border-color: #ccc;
- background-color: #fff;
-}
-
-.form-check:hover {
- background-color: #f0f0f0; 
- border-color: #333; 
-}
-
-.form-check-input {
- margin-right: 10px; 
- opacity: 0;
-}
-
-.disable {
- display: none;
-}
-
-#inputOfPrefix, #inputOfAdmin {
-  padding: 13px;
-  width: 200px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background-color 0.3s ease, border-color 0.3s ease; 
-  border-color: #ccc;
-  background-color: #fff;
-}
-#listOfCommands, #listOfCommandsEvent, #prefixOfCommands, #adminOfCommands {
-  border: none !important;
-}
-
-#listOfCommands:not(.modal), #listOfCommandsEvent:not(.modal), #prefixOfCommands:not(.modal), #adminOfCommands:not(.modal) {
-  box-shadow: none !important;
+.footer p {
+    margin: 0;
+    display: inline-block;
+    margin-right: 30px;
 }
