@@ -8,7 +8,7 @@ module.exports.config = {
 		role: 0,
 		credits: "joshua deku",
 		description: "Play and Download music from Spotify",
-		hasPrefix: false,
+		hasPrefix: true,
 		cooldown: 5,
 		aliases: ["spt"]
 };
