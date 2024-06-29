@@ -6,7 +6,7 @@ module.exports.config = {
  description: "Play a song",
  aliases: ["sing"],
 cooldown: 0,
-hasPrefix: false,
+hasPrefix: true,
 	usage: "",
 };
 
