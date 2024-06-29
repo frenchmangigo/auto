@@ -14,17 +14,11 @@ module.exports.config = {
 module.exports.run = function ({ api, event, prefix, admin }) {
     const { threadID, messageID, body } = event;
 
-    if (!prefix) {
-        api.sendMessage(
-            "𝐈 𝐡𝐚𝐯𝐞 𝐧𝐨 𝐩𝐫𝐞𝐟𝐢𝐱",
-            threadID,
-            messageID
-        );
-        return;
-    }
+    // Convert body to lowercase for case-insensitive comparison
+    const lowerCaseBody = body.toLowerCase();
 
-    // Check if the command is invoked manually with the prefix
-    if (body.toLowerCase() === `prefix`) {
+    // Check if the command is invoked with the word "prefix"
+    if (lowerCaseBody === "prefix") {
         api.sendMessage(
             `Hey there! My prefix is [ 𓆩 ${prefix} 𓆪 ].`,
             threadID,
