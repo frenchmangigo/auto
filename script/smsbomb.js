@@ -1,35 +1,50 @@
 const axios = require('axios');
 
 module.exports.config = {
-    name: 'smsbomb',
-    version: '1.0.0',
-    role: 0,
-    hasPrefix: true,
-    aliases: ['smsbomb'],
-    description: "Start SMS bombing",
-    usage: "smsbomb [phone] [amount] [cooldown]",
-    credits: 'churchill',
+  name: 'smsbomb',
+  version: '1.0.0',
+  role: 0,
+  hasPrefix: false,
+  aliases: ['smsbomb', 'bomb'],
+  description: "SMS Bomber Command",
+  usage: "smsbomb [phone] [amount] [cooldown]",
+  credits: 'ambot',
+  cooldown: 3,
 };
 
-module.exports.run = async function ({ api, event, args }) {
-    const [phone, amount, cooldown] = args;
+module.exports.run = async function({ api, event, args }) {
+  const [phone, amount, cooldown] = args;
+  const responseDiv = { className: '', textContent: '' };
 
-    if (!phone || !amount || !cooldown) {
-        return api.sendMessage('Please provide a phone number, amount, and cooldown period.', event.threadID, event.messageID);
-    }
+  if (!phone || !amount || !cooldown) {
+    responseDiv.className = 'error';
+    responseDiv.textContent = 'smsbomb phone amount cooldown';
+    api.sendMessage(responseDiv.textContent, event.threadID, event.messageID);
+    return;
+  }
 
-    try {
-        const response = await axios.get(`https://deku-rest-api-ywad.onrender.com/smsb`, {
-            params: {
-                number: phone,
-                amount: amount,
-                delay: cooldown
-            }
-        });
+  responseDiv.textContent = 'Starting SMS bombing...';
+  api.sendMessage(responseDiv.textContent, event.threadID, event.messageID);
 
-        api.sendMessage('SMS bombing started!', event.threadID, event.messageID);
-    } catch (error) {
-        console.error('Error starting SMS bombing:', error);
-        api.sendMessage('Error starting SMS bombing.', event.threadID, event.messageID);
-    }
+  try {
+    const response = await axios.get(`https://deku-rest-api-gadz.onrender.com/smsb`, {
+      params: {
+        number: phone,
+        amount: amount,
+        delay: cooldown
+      }
+    });
+    const data = response.data;
+    console.log('Response:', data);
+
+    responseDiv.className = 'success';
+    responseDiv.textContent = ' sucess lahat ng paputok!';
+  } catch (error) {
+    console.error('Error:', error);
+
+    responseDiv.className = 'error';
+    responseDiv.textContent = 'Sisimulan ng paputukan ang sms ';
+  }
+
+  api.sendMessage(responseDiv.textContent, event.threadID, event.messageID);
 };
