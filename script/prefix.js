@@ -14,10 +14,10 @@ module.exports.config = {
 module.exports.run = function ({ api, event, prefix, admin }) {
     const { threadID, messageID, body } = event;
 
-    // Convert body to lowercase for case-insensitive comparison
-    const lowerCaseBody = body.toLowerCase();
+    // Convert body to lowercase and trim whitespace for case-insensitive comparison
+    const lowerCaseBody = body.toLowerCase().trim();
 
-    // Check if the command is invoked with the word "prefix"
+    // Check if the command is invoked with the exact word "prefix"
     if (lowerCaseBody === "prefix") {
         api.sendMessage(
             `Hey there! My prefix is [ 𓆩 ${prefix} 𓆪 ].`,
@@ -25,7 +25,7 @@ module.exports.run = function ({ api, event, prefix, admin }) {
             messageID
         );
         return;
-    }
+    } 
 
     // Sending the message along with the attachment
     api.sendMessage(
