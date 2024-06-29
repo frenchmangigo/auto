@@ -13,7 +13,7 @@ module.exports.config = {
   role: 0,
   credits: 'Kenneth Panio',
   description: 'Get random uploaded content from civit.ai',
-	hasPrefix: false,
+	hasPrefix: true,
   usage: '[count] or nsfw',
   cooldowns: 0,
 };
